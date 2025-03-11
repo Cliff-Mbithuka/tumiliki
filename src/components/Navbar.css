@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background: white;
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .nav-links li a:hover {
+    color: orange;
+  }
+  

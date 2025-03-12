@@ -35,7 +35,7 @@
 /* Hero overlay positioned to the right */
 .hero-overlay {
     position: absolute;
-    top: 35%;
+    top: 50%;
     right: 0;
     transform: translateY(-50%);
     color: white;
@@ -62,7 +62,7 @@
 /* Info section - now visible */
 .info {
     position: absolute;
-    bottom: 15%; /* Moves it up slightly */
+    bottom: 5%; /* Moves it up slightly */
     /* left: 5%; */
    height: 200px;
     display: flex;

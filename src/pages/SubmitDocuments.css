@@ -1,0 +1,83 @@
+.submit-documents {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    margin-top: 8em;
+    border: 0.5px solid gray;
+    border-radius: 5px;
+  }
+  
+  .upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+    
+  }
+  h2{
+    margin-bottom: 0.5em;
+  }
+  .file-input{
+    margin-top: 1em;
+  }
+  
+  .drop-zone {
+    border: 2px dashed #fdbb2d;
+    padding: 30px;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+  }
+  
+  .drop-zone.active {
+    background-color: #fff3e0;
+    border-color: #ff9800;
+  }
+  
+  .upload-icon {
+    font-size: 40px;
+    color: #fdbb2d;
+  }
+  
+  .browse-btn {
+    display: inline-block;
+    background: #fdbb2d;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  textarea {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .upload-btn {
+    background: #fdbb2d;
+    color: white;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .upload-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .message {
+    margin-top: 15px;
+    color: #d32f2f;
+    font-weight: bold;
+  }
+  

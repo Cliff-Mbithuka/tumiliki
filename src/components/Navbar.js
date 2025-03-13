@@ -1,14 +1,30 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../assets/logo.jpeg";
 
 const Navbar = () => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  // Fetch user from local storage
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    setUser(userData);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setUser(null);
+    navigate("/sign-in");
+  };
+
   return (
     <nav className="navbar">
       <div className="logo">
         <img src={logo} alt="Tumiliki Logo" />
       </div>
+
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/search-records">Search records</Link></li>
@@ -25,7 +41,25 @@ const Navbar = () => {
           </ul>
         </li>
         <li><Link to="/contacts">Contacts</Link></li>
-        <li><Link to="/sign-in" className="sign-in">Sign in</Link></li>
+
+        {user ? (
+          <>
+            <img 
+              src={user.image || "/user.png"} 
+              alt="Profile" 
+              className="user-profile-img"
+            />
+            <button className="sign-out-btn" onClick={handleLogout}>
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <li>
+            <Link to="/sign-in" className="sign-in">
+              Sign In
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

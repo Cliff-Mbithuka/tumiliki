@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 import "./Auth.css";
 import loginImage from "../assets/login-image.jpeg";
 
@@ -10,6 +11,7 @@ const SignIn = () => {
     password: "",
   });
 
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,11 +24,10 @@ const SignIn = () => {
     try {
       const res = await axios.post("http://localhost:1234/api/auth/login", formData);
 
-      // Store token and user in local storage
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      // Save user to context & local storage
+      login(res.data.user);
 
-      navigate("/"); // Redirect to home page
+      navigate("/"); // Redirect to homepage
     } catch (err) {
       console.error(err);
       alert("Invalid credentials.");

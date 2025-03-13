@@ -3,7 +3,7 @@
     margin: auto;
     padding: 20px;
     text-align: center;
-    margin-top: 8em;
+    margin-top: 6em;
     border: 0.5px solid gray;
     border-radius: 5px;
   }
@@ -76,8 +76,8 @@
   }
   
   .message {
-    margin-top: 15px;
-    color: #d32f2f;
+    margin-top: 5px;
+    color: green;
     font-weight: bold;
   }
   

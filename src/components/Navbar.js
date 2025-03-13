@@ -1,21 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 import "./Navbar.css";
 import logo from "../assets/logo.jpeg";
 
 const Navbar = () => {
-  const [user, setUser] = useState(null);
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Fetch user from local storage
-  useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("user"));
-    setUser(userData);
-  }, []);
-
   const handleLogout = () => {
-    localStorage.clear();
-    setUser(null);
+    logout();
     navigate("/sign-in");
   };
 
@@ -26,33 +20,43 @@ const Navbar = () => {
       </div>
 
       <ul className="nav-links">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/search-records">Search records</Link></li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/search-records">Search records</Link>
+        </li>
         <li className="dropdown">
           <span>Submit documents ▼</span>
           <ul className="dropdown-menu">
-            <li><Link to="/submit-documents">Upload Documents</Link></li>
+            <li>
+              <Link to="/submit-documents">Upload Documents</Link>
+            </li>
           </ul>
         </li>
         <li className="dropdown">
           <span>Industry Professionals ▼</span>
           <ul className="dropdown-menu">
-            <li><Link to="/industry-professionals">Find Experts</Link></li>
+            <li>
+              <Link to="/industry-professionals">Find Experts</Link>
+            </li>
           </ul>
         </li>
-        <li><Link to="/contacts">Contacts</Link></li>
+        <li>
+          <Link to="/contacts">Contacts</Link>
+        </li>
 
         {user ? (
-          <>
-            <img 
-              src={user.image || "/user.png"} 
-              alt="Profile" 
+          <li className="user-section">
+            <img
+              src={user.image || "/user.png"}
+              alt="Profile"
               className="user-profile-img"
             />
             <button className="sign-out-btn" onClick={handleLogout}>
               Sign Out
             </button>
-          </>
+          </li>
         ) : (
           <li>
             <Link to="/sign-in" className="sign-in">

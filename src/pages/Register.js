@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 import "./Auth.css";
 import registerImage from "../assets/register-image.jpeg";
 
@@ -11,6 +12,7 @@ const Register = () => {
     password: "",
   });
 
+  const { login } = useContext(AuthContext); // Access AuthContext here
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,13 +25,10 @@ const Register = () => {
     try {
       const res = await axios.post("http://localhost:1234/api/auth/register", formData);
 
-      // Store the token in localStorage
-      localStorage.setItem("token", res.data.token);
+      // Store user in AuthContext and localStorage
+      login(res.data.user);
 
-      alert("Registration successful. Redirecting to homepage...");
-
-      // Redirect to homepage or dashboard
-      navigate("/");
+      navigate("/"); // Redirect to homepage
     } catch (err) {
       console.error(err);
       alert(err.response?.data?.message || "User already exists.");
@@ -80,6 +79,7 @@ const Register = () => {
 };
 
 export default Register;
+
 
 
 

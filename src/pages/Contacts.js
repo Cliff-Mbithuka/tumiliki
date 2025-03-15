@@ -39,10 +39,10 @@ const Contacts = () => {
       <div className="contact-box">
 
         <h3 className="contact-heading">Contact Details</h3>
-        <p>
-          <FaEnvelope className="icon" /> <a href="mailto:tumiliki@gmail.com">tumiliki@gmail.com</a>
+        <p className="contact">
+          <FaEnvelope className="icon" /> <a className="email" href="mailto:tumiliki@gmail.com">tumiliki@gmail.com</a>
         </p>
-        <p>
+        <p className="contact">
           <FaPhone className="icon" /> +254 256 373 498
         </p>
       </div>

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import "./Navbar.css";
-import logo from "../assets/logo.jpeg";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -31,14 +31,6 @@ const Navbar = () => {
           <ul className="dropdown-menu">
             <li>
               <Link to="/submit-documents">Upload Documents</Link>
-            </li>
-          </ul>
-        </li>
-        <li className="dropdown">
-          <span>Industry Professionals ▼</span>
-          <ul className="dropdown-menu">
-            <li>
-              <Link to="/industry-professionals">Find Experts</Link>
             </li>
           </ul>
         </li>

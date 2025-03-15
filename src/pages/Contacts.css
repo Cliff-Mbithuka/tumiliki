@@ -33,6 +33,10 @@
     font-size: 20px;
     color: #fdbb2d;
   }
+  .email{
+    text-direction: none;
+    list-style: none;
+  }
   
   .icon {
     margin-right: 5px;

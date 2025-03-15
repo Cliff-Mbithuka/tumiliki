@@ -1,4 +1,3 @@
-/* Ensure no extra margins or paddings cause overflow */
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +8,7 @@
 .home {
     position: relative;
     width: 100%;
-    height: 100vh; /* Ensures homepage is not more than 100vh */
+    height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -20,7 +19,7 @@
 .hero {
     position: absolute;
     width: 100%;
-    height: 100vh; /* Ensures image does not exceed 100vh */
+    height: 100vh; 
     top: 0;
     left: 0;
     z-index: -1;
@@ -48,7 +47,6 @@
 .hero-overlay h2 {
     font-size: 1.5rem;
     font-weight: bold;
-    /* margin-bottom: 10px; */
     text-align: center;
 }
 
@@ -62,12 +60,12 @@
 /* Info section - now visible */
 .info {
     position: absolute;
-    bottom: 5%; /* Moves it up slightly */
-    /* left: 5%; */
+    bottom: 5%; 
+
    height: 200px;
     display: flex;
     justify-content: space-between;
-    background: rgba(0, 0, 0, 0.4); /* Darker background for visibility */
+    background: rgba(0, 0, 0, 0.4);
     padding: 50px;
     width: 100%;
     color: white;

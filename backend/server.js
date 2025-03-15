@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const uploadRoutes = require("./routes/uploadRoutes");
 const landRoutes = require('./routes/landRoutes');
+const contactRoutes = require("./routes/contactRoutes");
 dotenv.config();
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 app.use("/api", uploadRoutes);
 app.use('/api/land', landRoutes);
+app.use("/api/contact", contactRoutes);
 
 // Server Listening
 const PORT = process.env.PORT || 1234;

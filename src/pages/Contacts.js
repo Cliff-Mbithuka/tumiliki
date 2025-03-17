@@ -15,17 +15,35 @@ const Contacts = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (!formData.name || !formData.email || !formData.message) {
       alert("Please fill out all fields.");
       return;
     }
-
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormData({ name: "", email: "", message: "" });
+  
+    try {
+      const response = await fetch("http://localhost:1234/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to send message.");
+      }
+  
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 3000);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      alert("Something went wrong. Try again later.");
+    }
   };
+  
 
   return (
     <div className="contacts">

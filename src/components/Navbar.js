@@ -37,7 +37,6 @@ const Navbar = () => {
         <li>
           <Link to="/contacts">Contacts</Link>
         </li>
-
         {user ? (
           <li className="user-section">
             <img
@@ -56,6 +55,25 @@ const Navbar = () => {
             </Link>
           </li>
         )}
+
+        {/* {user ? (
+          <li className="user-section">
+            <img
+              src={user.image || "/user.png"}
+              alt="Profile"
+              className="user-profile-img"
+            />
+            <button className="sign-out-btn" onClick={handleLogout}>
+              Sign Out
+            </button>
+          </li>
+        ) : (
+          <li>
+            <Link to="/sign-in" className="sign-in">
+              Sign In
+            </Link>
+          </li>
+        )} */}
       </ul>
     </nav>
   );

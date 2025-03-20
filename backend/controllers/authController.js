@@ -72,37 +72,80 @@ const googleAuth = passport.authenticate("google", { scope: ["profile", "email"]
 // @desc   Google OAuth callback
 // @route  GET /api/auth/google/callback
 const googleCallback = (req, res) => {
-  passport.authenticate("google", { session: false }, (err, user) => {
+  passport.authenticate("google", { session: false }, async (err, user) => {
     if (err || !user) {
       return res.redirect("http://localhost:3000/sign-in");
     }
 
-    // Generate JWT token
-    const token = jwt.sign({ userId: user.id, email: user.email }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
-    });
+    try {
+      // Check if user exists in the database
+      let existingUser = await findUserByEmail(user.email);
 
-    // Store token as HTTP-Only cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Lax",
-    });
+      if (!existingUser) {
+        // If user doesn't exist, create a new one
+        existingUser = await createUser(user.displayName, user.email, "", user.photos[0].value);
+      }
 
-    res.redirect("http://localhost:3000"); // Redirect to home page
+      // Generate JWT token
+      const token = jwt.sign(
+        { userId: existingUser.id, email: existingUser.email },
+        process.env.JWT_SECRET,
+        { expiresIn: "7d" }
+      );
+      console.log("Generated Token:", token);
+      // Store token as HTTP-Only cookie
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Lax",
+      });
+
+      res.redirect("http://localhost:3000"); // Redirect to home page
+    } catch (dbError) {
+      console.error("Error saving Google user:", dbError);
+      res.redirect("http://localhost:3000/sign-in");
+    }
   })(req, res);
 };
+
 
 
 // @desc   Get logged-in user
 // @route  GET /api/auth/me
 const getCurrentUser = async (req, res) => {
-  
-  if (!req.user) {
-    return res.status(401).json({ message: "Not authenticated" });
+  try {
+    if (!req.cookies || !req.cookies.token) {
+      return res.status(401).json({ message: "Unauthorized: No token found" });
+    }
+
+    const token = req.cookies.token; // Get token from cookies
+    console.log("Token received:", token); 
+    if (!token) {
+
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+
+    // Verify the token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("Decoded user data:", decoded); 
+    const user = await findUserByEmail(decoded.email);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      photo: user.photo, // Include photo URL for navbar
+    });
+  } catch (error) {
+    console.error("Auth error:", error);
+    res.status(401).json({ message: "Invalid token" });
   }
-  res.json(req.user);
 };
+
 
 // @desc   Logout user
 // @route  GET /api/auth/logout

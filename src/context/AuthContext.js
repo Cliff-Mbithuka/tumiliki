@@ -76,16 +76,23 @@ export const AuthProvider = ({ children }) => {
     const fetchUser = async () => {
       try {
         const res = await axios.get("http://localhost:1234/api/auth/me", {
-          withCredentials: true, // Include cookies
+          withCredentials: true, // Ensures cookies are sent
         });
         setUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data)); // Store user info
       } catch {
         setUser(null);
+        localStorage.removeItem("user"); // Remove stale user data
       }
     };
-
+  
     fetchUser();
+  
+    // Re-fetch user every time they return to the page
+    window.addEventListener("focus", fetchUser);
+    return () => window.removeEventListener("focus", fetchUser);
   }, []);
+  
 
   const login = (userData) => {
     setUser(userData);

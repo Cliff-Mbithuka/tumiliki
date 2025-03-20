@@ -9,10 +9,13 @@ const passport = require("./config/passport"); // Ensure this is required
 const session = require("express-session");
 dotenv.config();
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const app = express();
+
 
 // Middleware
 app.use(express.json());
+app.use(cookieParser());
 // app.use(cors());
 app.use(cors({
   origin: "http://localhost:3000", // Allow requests from frontend

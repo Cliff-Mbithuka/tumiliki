@@ -77,6 +77,7 @@ export const AuthProvider = ({ children }) => {
       try {
         const res = await axios.get("http://localhost:1234/api/auth/me", {
           withCredentials: true, // Ensures cookies are sent
+          headers: { "Cache-Control": "no-cache" } 
         });
         setUser(res.data);
         localStorage.setItem("user", JSON.stringify(res.data)); // Store user info
@@ -99,12 +100,30 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
-    window.location.href = "/sign-in";
+  // const logout = () => {
+  //   setUser(null);
+  //   localStorage.removeItem("user");
+  //   // Ensure React updates the state before navigation
+  // setTimeout(() => {
+  //   window.location.href = "/sign-in";
+  // }, 100);
+  // };
+  const logout = async () => {
+    try {
+      await axios.post("http://localhost:1234/api/auth/logout", {}, { withCredentials: true });
+  
+      setUser(null);
+      localStorage.removeItem("user");
+  
+      setTimeout(() => {
+        window.location.href = "/sign-in";
+      }, 100);
+    } catch (error) {
+      console.error("Logout failed", error.response?.data || error.message);
+    }
   };
-
+  
+  
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
       {children}

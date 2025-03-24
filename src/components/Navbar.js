@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext , useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import "./Navbar.css";
@@ -7,6 +7,10 @@ import logo from "../assets/logo.png";
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("Navbar re-rendered. User:", user);
+  }, [user]);
 
   const handleLogout = () => {
     logout();
@@ -40,7 +44,7 @@ const Navbar = () => {
         {user ? (
           <li className="user-section">
             <img
-              src={user.image || "/user.png"}
+              src={user.photo_url || "/user.png"}
               alt="Profile"
               className="user-profile-img"
             />

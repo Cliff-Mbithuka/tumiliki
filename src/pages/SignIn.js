@@ -200,7 +200,7 @@ const SignIn = () => {
   };
 
   const handleGoogleSignIn = () => {
-    window.location.href = "http://localhost:1234/api/auth/google";
+    window.open("http://localhost:1234/api/auth/google", "_self");
   };
 
   return (

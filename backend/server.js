@@ -1,6 +1,7 @@
 const express = require('express');
 // const cors = require('cors');
 const dotenv = require('dotenv');
+require("./config/passport");
 const authRoutes = require('./routes/authRoutes');
 const uploadRoutes = require("./routes/uploadRoutes");
 const landRoutes = require('./routes/landRoutes');
@@ -13,14 +14,16 @@ const cookieParser = require("cookie-parser");
 const app = express();
 
 
-// Middleware
-app.use(express.json());
-app.use(cookieParser());
+
 // app.use(cors());
 app.use(cors({
   origin: "http://localhost:3000", // Allow requests from frontend
-  credentials: true, // Allow cookies and auth headers
+  credentials: true // Allow cookies and auth headers
 }));
+// Middleware
+app.use(express.json());
+app.use(cookieParser());
+
 app.use(
     session({
       secret: process.env.SESSION_SECRET,

@@ -12,7 +12,7 @@ const SearchRecords = () => {
 
   const pdfRef = useRef();
 
-  // ✅ Trigger animation when the component mounts
+  // Trigger animation when the component mounts
   useEffect(() => {
     setTimeout(() => {
       setShowCards(true);
@@ -64,7 +64,7 @@ const SearchRecords = () => {
       {loading && <p>Loading...</p>}
       {error && <p className="error">{error}</p>}
 
-      {/* ✅ Cards will always be visible */}
+      {/* Cards will always be visible */}
       <div ref={pdfRef}>
         <div className="data-grid">
           <div className={`data-card ${showCards ? "fade-in" : ""}`}>

@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-// ✅ Contact Form Handler
+// Contact Form Handler
 const sendMessage = async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -9,7 +9,7 @@ const sendMessage = async (req, res) => {
   }
 
   try {
-    // ✅ Configure Nodemailer
+    //  Configure Nodemailer
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -18,15 +18,15 @@ const sendMessage = async (req, res) => {
       },
     });
 
-    // ✅ Email details
+    // Email details
     let mailOptions = {
       from: process.env.EMAIL_USER,
-      to: "cliffordmusyoka1@gmail.com", // Change to the recipient email
+      to: "cliffordmusyoka1@gmail.com", 
       subject: "New Contact Form Message",
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };
 
-    // ✅ Send email
+    //Send email
     await transporter.sendMail(mailOptions);
 
     res.status(200).json({ success: true, message: "Message sent successfully!" });

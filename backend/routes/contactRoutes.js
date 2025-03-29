@@ -3,7 +3,7 @@ const { sendMessage } = require("../controllers/contactController");
 
 const router = express.Router();
 
-// ✅ Define Contact Route
+//  Define Contact Route
 router.post("/", sendMessage);
 
 module.exports = router;

@@ -57,9 +57,8 @@ const SubmitDocuments = () => {
     formData.append("file", file);
     formData.append("description", description);
   
-    
-  setLoading(true);
-
+    setLoading(true);
+  
     try {
       const response = await fetch("http://localhost:1234/api/upload", {
         method: "POST",
@@ -67,16 +66,48 @@ const SubmitDocuments = () => {
       });
   
       const data = await response.json();
-      setMessage(data.message);
+      setMessage(data.message); // Display land found/not found message
       setFile(null);
       setDescription("");
     } catch (error) {
       console.error(error);
       setMessage("Upload failed.");
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
+  
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   if (!file || !description.trim()) {
+  //     setMessage("Please upload a file and provide a description.");
+  //     return;
+  //   }
+  
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+  //   formData.append("description", description);
+  
+    
+  // setLoading(true);
+
+  //   try {
+  //     const response = await fetch("http://localhost:1234/api/upload", {
+  //       method: "POST",
+  //       body: formData,
+  //     });
+  
+  //     const data = await response.json();
+  //     setMessage(data.message);
+  //     setFile(null);
+  //     setDescription("");
+  //   } catch (error) {
+  //     console.error(error);
+  //     setMessage("Upload failed.");
+  //   }finally {
+  //     setLoading(false);
+  //   }
+  // };
   
 
   return (

@@ -39,15 +39,17 @@ const fetchLandByTitle = async (req, res) => {
 
 // Upload CSV data
 const uploadCSV = async (req, res) => {
-    const csvPath = path.join(__dirname, '../data/synthetic_land_data.csv');
-    try {
-      uploadCSVData(csvPath);
-      res.status(200).json({ message: 'CSV data uploaded successfully!' });
-    } catch (error) {
-      console.error('CSV Upload Error:', error);
-      res.status(500).json({ message: 'CSV upload failed' });
-    }
-  };
+  const csvPath = path.join(__dirname, '../data/synthetic_land_data.csv');
+  
+  try {
+    await uploadCSVData(csvPath);  
+    res.status(200).json({ message: 'CSV data uploaded successfully!' });
+  } catch (error) {
+    console.error('CSV Upload Error:', error);
+    res.status(500).json({ message: 'CSV upload failed' });
+  }
+};
+
 
 module.exports = {
   uploadLandData,

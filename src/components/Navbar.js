@@ -38,6 +38,7 @@ const Navbar = () => {
             </li>
           </ul>
         </li>
+        <li><Link to="/report-fraud">Report Fraud</Link></li>
         <li>
           <Link to="/contacts">Contacts</Link>
         </li>

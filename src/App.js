@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import SearchRecords from "./pages/SearchRecords";
 import SubmitDocuments from "./pages/SubmitDocuments";
+import ReportFraud from "./pages/ReportFraud";
 import Contacts from "./pages/Contacts";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/report-fraud" element={<ReportFraud />} />
         <Route path="/contacts" element={<Contacts />} />
 
         {/* Protected Routes */}

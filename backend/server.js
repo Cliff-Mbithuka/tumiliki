@@ -9,8 +9,10 @@ const uploadRoutes = require("./routes/uploadRoutes");
 const landRoutes = require('./routes/landRoutes');
 const contactRoutes = require("./routes/contactRoutes");
 const chatbotRoutes = require("./routes/chatbotRoutes");
+const fraudRoutes = require("./routes/reportFraudRoutes");
 const passport = require("./config/passport"); 
 const session = require("express-session");
+// const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -45,6 +47,7 @@ app.use("/api", uploadRoutes);
 app.use('/api/land', landRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api", chatbotRoutes);
+app.use("/api", fraudRoutes);
 // Server Listening
 const PORT = process.env.PORT || 1234;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -3,7 +3,7 @@
     margin: auto;
     padding: 20px;
     text-align: center;
-    margin-top: 6em;
+    margin-top: 5em;
     border: 0.5px solid gray;
     border-radius: 5px;
   }
@@ -15,9 +15,9 @@
     margin-top: 1em;
     
   }
-  h2{
+  /* h2{
     margin-bottom: 0.5em;
-  }
+  } */
   .file-input{
     margin-top: 1em;
   }

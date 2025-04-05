@@ -12,6 +12,8 @@ const chatbotRoutes = require("./routes/chatbotRoutes");
 const fraudRoutes = require("./routes/reportFraudRoutes");
 const passport = require("./config/passport"); 
 const session = require("express-session");
+const landSaleRoutes = require("./routes/landSaleRoutes");
+
 // const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -22,7 +24,7 @@ const app = express();
 // app.use(cors());
 app.use(cors({
   origin: "http://localhost:3000", 
-  credentials: true
+  credentials: true,  exposedHeaders: ['Authorization']
 }));
 // Middleware
 app.use(express.json());
@@ -48,6 +50,7 @@ app.use('/api/land', landRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api", chatbotRoutes);
 app.use("/api", fraudRoutes);
+app.use("/api/land-sales", landSaleRoutes);
 // Server Listening
 const PORT = process.env.PORT || 1234;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

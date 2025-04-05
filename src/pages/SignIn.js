@@ -27,8 +27,10 @@ const SignIn = () => {
       const res = await axios.post("http://localhost:1234/api/auth/login", formData);
 
       // Store token in localStorage
-      localStorage.setItem("authToken", res.data.token);
-
+      localStorage.setItem('token', res.data.token);
+      document.cookie = `token=${res.data.token}; path=/; secure=${process.env.NODE_ENV === 'production'}`; 
+// In your frontend (where you store the token)
+console.log("Stored token:", localStorage.getItem("token"));
       // Store user in AuthContext and navigate
       login(res.data.user);
       navigate("/");

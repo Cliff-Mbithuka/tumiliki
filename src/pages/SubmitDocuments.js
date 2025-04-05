@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import "./SubmitDocuments.css";
+import { useNavigate } from "react-router-dom";
 
 const SubmitDocuments = () => {
   const [file, setFile] = useState(null);
@@ -8,6 +9,8 @@ const SubmitDocuments = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [dragActive, setDragActive] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -76,7 +79,9 @@ const SubmitDocuments = () => {
       setLoading(false);
     }
   };
-  
+  const handleProceed = () => {
+    navigate("/sell-land"); // 👈 navigate to sell land page
+  };
 
   return (
     <div className="submit-documents">
@@ -126,6 +131,12 @@ const SubmitDocuments = () => {
       </form>
 
       {message && <p className="message">{message}</p>}
+      {/* Show Proceed button ONLY if land is found */}
+      {message.toLowerCase().includes("verified") && (
+        <button onClick={handleProceed} className="proceed-btn">
+          Proceed to Sell Land
+        </button>
+      )}
     </div>
   );
 };

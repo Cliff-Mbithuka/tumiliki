@@ -10,15 +10,25 @@ const register = async (req, res) => {
   try {
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
-      return res.status(400).json({ message: "Email is already registered. Try logging in." });
+      return res
+        .status(400)
+        .json({ message: "Email is already registered. Try logging in." });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user in the database with default values for photo and Google ID
-    const newUser = await createUser(username, email, hashedPassword, null, null);
+    const newUser = await createUser(
+      username,
+      email,
+      hashedPassword,
+      null,
+      null
+    );
 
-    res.status(201).json({ message: "User registered successfully", user: newUser });
+    res
+      .status(201)
+      .json({ message: "User registered successfully", user: newUser });
   } catch (error) {
     console.error("Registration error:", error);
     res.status(500).json({ message: "Server error. Please try again later." });
@@ -32,26 +42,40 @@ const login = async (req, res) => {
   try {
     const user = await findUserByEmail(email);
     if (!user) {
-      return res.status(400).json({ message: "User not found. Please sign up first." });
+      return res
+        .status(400)
+        .json({ message: "User not found. Please sign up first." });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ message: "Incorrect password. Try again." });
+      return res
+        .status(401)
+        .json({ message: "Incorrect password. Try again." });
     }
 
-    const token = jwt.sign({ userId: user.id, email: user.email }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
-    });
+    const token = jwt.sign(
+      { userId: user.id, email: user.email },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "7d",
+      }
+    );
 
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "Lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
     const { password: _, ...userData } = user;
-    res.status(200).json({ message: "Login successful", user: userData });
+    res.status(200).json({ 
+      success: true,
+      message: "Login successful",
+      user: userData,
+      token: token 
+    });
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ message: "Server error. Please try again later." });
@@ -59,7 +83,9 @@ const login = async (req, res) => {
 };
 
 // Google Authentication (Redirect to Google login)
-const googleAuth = passport.authenticate("google", { scope: ["profile", "email"] });
+const googleAuth = passport.authenticate("google", {
+  scope: ["profile", "email"],
+});
 
 // Google OAuth Callback
 const googleCallback = (req, res, next) => {
@@ -74,12 +100,22 @@ const googleCallback = (req, res, next) => {
 
       if (!existingUser) {
         // Create new user with Google ID and profile photo
-        existingUser = await createUser(user.displayName, user.email, "", user.photos[0].value, user.id);
+        existingUser = await createUser(
+          user.displayName,
+          user.email,
+          "",
+          user.photos[0].value,
+          user.id
+        );
       }
 
-      const token = jwt.sign({ userId: existingUser.id, email: existingUser.email }, process.env.JWT_SECRET, {
-        expiresIn: "7d",
-      });
+      const token = jwt.sign(
+        { userId: existingUser.id, email: existingUser.email },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "7d",
+        }
+      );
 
       res.cookie("token", token, {
         httpOnly: true,
@@ -87,7 +123,7 @@ const googleCallback = (req, res, next) => {
         sameSite: "Lax",
       });
 
-      res.redirect(`${process.env.CLIENT_URL}`); 
+      res.redirect(`${process.env.CLIENT_URL}`);
     } catch (dbError) {
       console.error("Error saving Google user:", dbError);
       res.redirect(`${process.env.CLIENT_URL}/sign-in`);
@@ -114,7 +150,7 @@ const getCurrentUser = async (req, res) => {
       id: user.id,
       username: user.username,
       email: user.email,
-      photo: user.photo_url, 
+      photo: user.photo_url,
     });
   } catch (error) {
     console.error("Auth error:", error);
@@ -140,4 +176,3 @@ module.exports = {
   getCurrentUser,
   logout,
 };
-

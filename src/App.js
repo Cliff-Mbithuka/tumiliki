@@ -8,6 +8,7 @@ import SubmitDocuments from "./pages/SubmitDocuments";
 import ReportFraud from "./pages/ReportFraud";
 import Contacts from "./pages/Contacts";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import SellLand from "./pages/SellLand";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/search-records" element={<ProtectedRoute><SearchRecords /></ProtectedRoute>} />
         <Route path="/submit-documents" element={<ProtectedRoute><SubmitDocuments /></ProtectedRoute>} />
         <Route path="/report-fraud" element={<ProtectedRoute><ReportFraud /></ProtectedRoute>} />
+        <Route path="/sell-land" element={<ProtectedRoute><SellLand /></ProtectedRoute>} />
       </Routes>
     </Router>
   );

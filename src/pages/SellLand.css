@@ -1,0 +1,255 @@
+/* .sell-land {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .form-group textarea {
+    min-height: 100px;
+  }
+  
+  .image-preview {
+    margin-top: 10px;
+  }
+  
+  .image-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    border: 1px solid #ddd;
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .alert {
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 4px;
+  }
+  
+  .alert-error {
+    background-color: #ffdddd;
+    color: #d8000c;
+  }
+  
+  .alert-success {
+    background-color: #ddffdd;
+    color: #4F8A10;
+  }
+  
+  .spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 5px;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  } */
+  .sell-land {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sell-land h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+  
+  .sell-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Left column items */
+  .form-group:nth-child(1),
+  .form-group:nth-child(3),
+  .form-group:nth-child(5) {
+    grid-column: 1;
+  }
+  
+  /* Right column items */
+  .form-group:nth-child(2),
+  .form-group:nth-child(4),
+  .form-group:nth-child(6) {
+    grid-column: 2;
+  }
+  
+  /* Make file upload and button full width */
+  .form-group:last-child,
+  .form-group:nth-last-child(2) {
+    grid-column: 1 / -1;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  }
+  
+  .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .image-preview {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .image-preview img {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  input[type="file"] {
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 6px;
+  }
+  
+  button[type="submit"] {
+    background-color: #27ae60;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #2ecc71;
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+  }
+  
+  .alert {
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .alert-error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+  }
+  
+  .alert-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+  }
+  
+  .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .sell-form {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-group:nth-child(1),
+    .form-group:nth-child(2),
+    .form-group:nth-child(3),
+    .form-group:nth-child(4),
+    .form-group:nth-child(5),
+    .form-group:nth-child(6) {
+      grid-column: 1;
+    }
+    
+    .sell-land {
+      padding: 20px;
+    }
+  }

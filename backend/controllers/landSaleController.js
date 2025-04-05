@@ -1,22 +1,49 @@
-const pool = require('../db'); // Assuming you are using pg Pool
+const pool = require('../config/db');
+const { validationResult } = require('express-validator');
 
-// Create Land Sale
-exports.createLandSale = async (req, res) => {
+const createLandSale = async (req, res) => {
+  // Validate inputs
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
-    const { title_number, description, price } = req.body;
-    const photo_url = req.file ? req.file.path : null; // If using multer for photo upload
-    const seller_id = req.user.id; // Assuming req.user is set after login
+    const { title_number, description, price, location } = req.body;
+    const photo_url = req.file ? req.file.path : null;
+    const seller_id = req.user.id;
+
+    // Validate price is positive
+    if (parseFloat(price) <= 0) {
+      return res.status(400).json({ message: "Price must be greater than 0" });
+    }
+
+    // Validate file type if photo exists
+    if (req.file && !req.file.mimetype.startsWith('image/')) {
+      return res.status(400).json({ message: "Only image files are allowed" });
+    }
 
     const newSale = await pool.query(
-      `INSERT INTO land_sales (title_number, description, price, photo_url, seller_id)
-       VALUES ($1, $2, $3, $4, $5)
+      `INSERT INTO land_sales 
+       (title_number, description, price, location, photo_url, seller_id)
+       VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING *`,
-      [title_number, description, price, photo_url, seller_id]
+      [title_number, description, price, location, photo_url, seller_id]
     );
 
     res.status(201).json(newSale.rows[0]);
   } catch (error) {
     console.error(error.message);
-    res.status(500).send('Server Error');
+    
+    // Handle duplicate title number
+    if (error.code === '23505') {
+      return res.status(400).json({ message: "This title number is already registered" });
+    }
+    
+    res.status(500).json({ message: 'Server Error' });
   }
+};
+
+module.exports = {
+  createLandSale,
 };

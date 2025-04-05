@@ -77,38 +77,6 @@ const SubmitDocuments = () => {
     }
   };
   
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   if (!file || !description.trim()) {
-  //     setMessage("Please upload a file and provide a description.");
-  //     return;
-  //   }
-  
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-  //   formData.append("description", description);
-  
-    
-  // setLoading(true);
-
-  //   try {
-  //     const response = await fetch("http://localhost:1234/api/upload", {
-  //       method: "POST",
-  //       body: formData,
-  //     });
-  
-  //     const data = await response.json();
-  //     setMessage(data.message);
-  //     setFile(null);
-  //     setDescription("");
-  //   } catch (error) {
-  //     console.error(error);
-  //     setMessage("Upload failed.");
-  //   }finally {
-  //     setLoading(false);
-  //   }
-  // };
-  
 
   return (
     <div className="submit-documents">

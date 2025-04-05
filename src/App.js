@@ -17,12 +17,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/report-fraud" element={<ReportFraud />} />
+        
         <Route path="/contacts" element={<Contacts />} />
 
         {/* Protected Routes */}
         <Route path="/search-records" element={<ProtectedRoute><SearchRecords /></ProtectedRoute>} />
         <Route path="/submit-documents" element={<ProtectedRoute><SubmitDocuments /></ProtectedRoute>} />
+        <Route path="/report-fraud" element={<ProtectedRoute><ReportFraud /></ProtectedRoute>} />
       </Routes>
     </Router>
   );

@@ -58,7 +58,7 @@ const Contacts = () => {
 
         <h3 className="contact-heading">Contact Details</h3>
         <p className="contact">
-          <FaEnvelope className="icon" /> <a className="email" href="mailto:tumiliki@gmail.com">tumiliki@gmail.com</a>
+          <FaEnvelope className="icon" /> <a className="email" href="mailto:tumiliki@gmail.com">info@tumiliki.co.ke</a>
         </p>
         <p className="contact">
           <FaPhone className="icon" /> +254 256 373 498

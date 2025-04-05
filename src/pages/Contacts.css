@@ -27,6 +27,7 @@
   
   .contact-heading {
     color: #fdbb2d;
+    margin-bottom: 0.5em;
   }
   
   .contact-icon {
@@ -36,6 +37,7 @@
   .email{
     text-direction: none;
     list-style: none;
+    
   }
   
   .icon {
@@ -123,6 +125,13 @@
     font-size: 24px;
     color: #007bff;
     margin-right: 10px;
+  }
+  .email{
+    color : black;
+    text-decoration: none;
+  }
+  .contact{
+    margin-bottom: 0.5em;
   }
   /* p{
     margin: 1em 0;

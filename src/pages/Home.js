@@ -133,7 +133,7 @@ const Home = () => {
         </div>
 
         <div className="impact-stat">
-          <p className="emoji">💀</p>
+          <p className="emoji">❌</p>
           <h3 className="stat-number">12,500+</h3>
           <p className="stat-label">Fraud Cases Prevented</p>
           <p className="stat-description">Saving Kenyans from land fraud</p>

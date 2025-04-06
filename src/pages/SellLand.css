@@ -82,9 +82,9 @@
   } */
   .sell-land {
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 6em auto 0;
     padding: 30px;
-    background-color: #f9f9f9;
+    background-color:rgb(244, 231, 231);
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
@@ -103,7 +103,7 @@
   }
   
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   /* Left column items */
@@ -176,7 +176,7 @@
   }
   
   button[type="submit"] {
-    background-color: #27ae60;
+    background-color:orange;
     color: white;
     padding: 14px 20px;
     border: none;

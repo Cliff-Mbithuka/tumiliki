@@ -1,4 +1,4 @@
-import { useContext , useEffect} from "react";
+import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import "./Navbar.css";
@@ -38,7 +38,12 @@ const Navbar = () => {
             </li>
           </ul>
         </li>
-        <li><Link to="/report-fraud">Report Fraud</Link></li>
+        <li>
+          <Link to="/marketplace">Buy Land</Link>
+        </li>
+        <li>
+          <Link to="/report-fraud">Report Fraud</Link>
+        </li>
         <li>
           <Link to="/contacts">Contacts</Link>
         </li>

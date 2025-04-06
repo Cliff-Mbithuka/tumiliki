@@ -1,0 +1,94 @@
+.marketplace {
+    max-width: 1200px;
+    margin: 6em auto;
+    padding: 0 1em;
+  }
+  
+  .land-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2em;
+    margin-top: 1em;
+  }
+  
+  .land-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  
+  .land-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .land-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .land-details {
+    padding: 1em;
+  }
+  
+  .land-details h3 {
+    margin: 0 0 0.5em;
+    color: #2c3e50;
+  }
+  
+  .delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1em;
+    transition: background-color 0.2s;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c0392b;
+  }
+  
+  .message {
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 4px;
+  }
+  
+  .message.success {
+    color: green;
+    background-color: #e8f5e9;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .message.error {
+    color: #e74c3c;
+    background-color: #fdecea;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  .delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+  }
+  
+  .land-details {
+    padding: 15px;
+  }

@@ -126,7 +126,7 @@ body {
 }
 
 .form-header h2 {
-  color: var(--primary-color);
+  color: orange;
   font-size: 2rem;
   /* margin-bottom: 0.5rem; */
 }
@@ -153,8 +153,9 @@ body {
   grid-column: 1 / -1;
   display: flex;
   justify-content: center;
-  /* margin-top: 1rem; */
+
 }
+
 
 /* Form Fields */
 .form-field {
@@ -256,8 +257,8 @@ select {
   cursor: pointer;
   transition: var(--transition);
   display: flex;
+  justify-content: center;
   align-items: center;
-  /* gap: 0.5rem; */
 }
 
 .submit-btn:hover {
